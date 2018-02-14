@@ -14,8 +14,8 @@ class NaverCrawler:
             info=json.load(f)
             self.option_arr=info["options"]
             self.option_url_list=info["options_url"]
-            self.client_ID=info["client_ID"]
-            self.client_Secret = info["client_Secret"]
+            self.client_id=info["client_id"]
+            self.client_secret = info["client_secret"]
             self.base_url=info["base_url"]
         self.display_arr=[]
         self.keyword = keyword
@@ -47,8 +47,8 @@ class NaverCrawler:
         display=self.display_arr[idx]
         request_url=self.base_url+opt_url+'?query='+self.keyword_url+'&display='+str(display)
         request=urllib.request.Request(request_url)
-        request.add_header('X-Naver-Client-Id', self.client_ID)
-        request.add_header('X-Naver-Client-Secret', self.client_Secret)
+        request.add_header('X-Naver-Client-Id', self.client_id)
+        request.add_header('X-Naver-Client-Secret', self.client_secret)
         response=urllib.request.urlopen(request)
         rescode=response.getcode()
         if rescode==200:
