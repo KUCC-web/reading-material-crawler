@@ -3,7 +3,7 @@
 #파싱: Google
 
 import naver_crawler
-
+import file_inscriber
 
 
 #프로그램 시작과 검색어 입력(main의 맨 처음)(이 단계에 조사 원하는 플랫폼도 받기)
@@ -15,4 +15,8 @@ keyword=input()
 #naver 크롤러 실행
 naver_crawler=naver_crawler.NaverCrawler(keyword)
 naver_crawler.implementRequest()
+file_inscriber=file_inscriber.FileInscriber(naver_crawler)
+file_inscriber.inscribeFile()
+
+
 

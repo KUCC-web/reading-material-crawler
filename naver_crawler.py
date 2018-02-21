@@ -1,7 +1,6 @@
 #크롤링 객체
 import urllib.request
 import urllib.parse
-import file_inscriber
 import json
 
 class NaverCrawler:
@@ -18,6 +17,7 @@ class NaverCrawler:
             self.client_secret = info["client_secret"]
             self.base_url=info["base_url"]
         self.display_arr=[]
+        self.option_response_dict={} # 추가된 부분
         self.keyword = keyword
         self.keyword_url = urllib.parse.quote(self.keyword)
         self.file_name=self.site_of_crawling+' '+keyword+' 검색결과.txt'
@@ -52,9 +52,7 @@ class NaverCrawler:
         response=urllib.request.urlopen(request)
         rescode=response.getcode()
         if rescode==200:
-            response_content=response.read()
-            inscriber=file_inscriber.FileInscriber(response_content, option, self.file_name)
-            inscriber.inscribeFile()
+            self.option_response_dict[option] = response
         else:
             print("Error Code:"+rescode)
 
